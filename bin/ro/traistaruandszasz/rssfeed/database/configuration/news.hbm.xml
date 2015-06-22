@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ro.traistaruandszasz.rssfeed.database.model.News" table="news">
+
+<id name="idnews" column="idnews"  >
+<generator class="assigned" />
+</id>
+
+<many-to-one name="user" class="ro.traistaruandszasz.rssfeed.database.model.User" fetch="select" >
+            <column name="id_user_FKnews" not-null="true" />
+</many-to-one>
+
+<property name="title" column="title" />
+<property name="date" column="date" />
+<property name="description" column="description" />
+<property name="source" column="source" />
+
+<bag name="categories" table="newscategory" inverse="false" lazy="true" fetch="select" cascade="all">
+	<key>
+    	<column name="id_news_FKnewscategory" not-null="true" />
+    </key>
+
+    <many-to-many entity-name="ro.traistaruandszasz.rssfeed.database.model.Category">
+    	<column name="id_category_FKnewscategory" not-null="true" />
+    </many-to-many>
+</bag>
+
+<bag name="comments" table="comment" 
+				inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="id_news_FKcomment" not-null="true" />
+            </key>
+            <one-to-many class="ro.traistaruandszasz.rssfeed.database.model.Comment" />
+</bag>
+    
+</class>
+</hibernate-mapping>

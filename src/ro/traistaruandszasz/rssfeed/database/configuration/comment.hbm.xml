@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ro.traistaruandszasz.rssfeed.database.model.Comment" table="comment">
+
+<id name="idcomment" column="idcomment"  >
+<generator class="assigned" />
+</id>
+
+<many-to-one name="friendship" class="ro.traistaruandszasz.rssfeed.database.model.Friendship" fetch="select" >
+            <column name="id_friend_FKcomment" not-null="true" />
+</many-to-one>
+
+<many-to-one name="news" class="ro.traistaruandszasz.rssfeed.database.model.News" fetch="select" >
+            <column name="id_news_FKcomment" not-null="true" />
+</many-to-one>
+
+<property name="date" column="date" type="timestamp"/>
+<property name="text" column="text" />
+
+</class>
+</hibernate-mapping>

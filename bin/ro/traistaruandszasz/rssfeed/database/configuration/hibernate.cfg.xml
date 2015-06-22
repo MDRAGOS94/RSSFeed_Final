@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+	
+		<!--> Related to the connection START<-->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/database_rssfeed</property>
+		<property name="hibernate.connection.user">Student</property>
+		<property name="hibernate.connection.password">12345</property>
+		<!--> Related to the connection END<-->
+		
+		<!--> Related to hibernate properties START<-->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="use_sql_comments">true</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<property name="hibernate.cache.use_structured_entries">true</property>
+		<!--> Related to hibernate properties END<-->
+	
+		<!--> Related to mapping START<-->
+		<mapping resource="ro/traistaruandszasz/rssfeed/database/configuration/user.hbm.xml" />
+		<mapping resource="ro/traistaruandszasz/rssfeed/database/configuration/keyword.hbm.xml" />
+		<mapping resource="ro/traistaruandszasz/rssfeed/database/configuration/friendship.hbm.xml"/>
+		<mapping resource="ro/traistaruandszasz/rssfeed/database/configuration/news.hbm.xml"/>
+		<mapping resource="ro/traistaruandszasz/rssfeed/database/configuration/category.hbm.xml" />
+		<mapping resource="ro/traistaruandszasz/rssfeed/database/configuration/resource.hbm.xml"/>
+		<mapping resource="ro/traistaruandszasz/rssfeed/database/configuration/comment.hbm.xml"/>
+		<mapping resource="ro/traistaruandszasz/rssfeed/database/configuration/message.hbm.xml"/>
+		<!--> Related to mapping END<-->
+				
+	</session-factory>
+
+</hibernate-configuration>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ro.traistaruandszasz.rssfeed.database.model.Message" table="message">
+
+<id name="idmessage" column="idmessage"  >
+<generator class="assigned" />
+</id>
+
+<property name="text" column="text" />
+
+</class>
+</hibernate-mapping>

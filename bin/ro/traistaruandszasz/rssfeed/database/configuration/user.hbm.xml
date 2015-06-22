@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ro.traistaruandszasz.rssfeed.database.model.User" table="user">
+
+<id name="iduser" column="iduser"  >
+<generator class="assigned" />
+</id>
+
+<property name="name" column="name" />
+<property name="password" column="password" />
+
+<bag name="resources" table="resources" 
+				inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="id_user_FKresource" not-null="true" />
+            </key>
+            <one-to-many class="ro.traistaruandszasz.rssfeed.database.model.Resource" />
+</bag>
+
+<bag name="news" table="news" 
+				inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="id_user_FKnews" not-null="true" />
+            </key>
+            <one-to-many class="ro.traistaruandszasz.rssfeed.database.model.News" />
+</bag>
+
+<bag name="friendships2" table="friendship" 
+				inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="id_user_FKfriendship" not-null="true" />
+            </key>
+            <one-to-many class="ro.traistaruandszasz.rssfeed.database.model.Friendship" />
+</bag>
+
+<bag name="friendships1" table="friendship" 
+				inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="id_friend_FKfriendship" not-null="true" />
+            </key>
+            <one-to-many class="ro.traistaruandszasz.rssfeed.database.model.Friendship" />
+</bag>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ro.traistaruandszasz.rssfeed.database.model.Friendship" table="friendship">
+
+<id name="idfriendship" column="idfriendship"  >
+<generator class="assigned" />
+</id>
+
+<many-to-one name="user2" class="ro.traistaruandszasz.rssfeed.database.model.User" fetch="select" >
+            <column name="id_user_FKfriendship" not-null="true" />
+</many-to-one>
+
+<many-to-one name="user1" class="ro.traistaruandszasz.rssfeed.database.model.User" fetch="select" >
+            <column name="id_friend_FKfriendship" not-null="true" />
+</many-to-one>
+
+<bag name="comments" table="comment" 
+				inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="id_friend_FKcomment" not-null="true" />
+            </key>
+            <one-to-many class="ro.traistaruandszasz.rssfeed.database.model.Comment" />
+</bag>
+
+<property name="blocked" column="blocked" />
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ro.traistaruandszasz.rssfeed.database.model.Category" table="category">
+
+<id name="idcategory" column="idcategory"  >
+<generator class="assigned" />
+</id>
+
+<property name="name" column="name" />
+<property name="description" column="description" />
+
+<bag name="news" table="newscategory" inverse="false" lazy="true" fetch="select">
+	<key>
+    	<column name="id_category_FKnewscategory" not-null="true" />
+    </key>
+
+    <many-to-many entity-name="ro.traistaruandszasz.rssfeed.database.model.News">
+    	<column name="id_news_FKnewscategory" not-null="true" />
+    </many-to-many>
+</bag>
+
+<bag name="keywords" table="keywordcategory" inverse="false" lazy="true" fetch="select">
+	<key>
+    	<column name="id_category_FKkeywordcategory" not-null="true" />
+    </key>
+
+    <many-to-many entity-name="ro.traistaruandszasz.rssfeed.database.model.Keyword">
+    	<column name="id_keyword_FKkeywordcategory" not-null="true" />
+    </many-to-many>
+</bag>
+
+</class>
+</hibernate-mapping>

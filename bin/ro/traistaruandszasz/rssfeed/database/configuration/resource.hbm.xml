@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ro.traistaruandszasz.rssfeed.database.model.Resource" table="resource">
+
+<id name="idresource" column="idresource"  >
+<generator class="assigned" />
+</id>
+
+<many-to-one name="user" class="ro.traistaruandszasz.rssfeed.database.model.User" fetch="select" >
+            <column name="id_user_FKresource" not-null="true" />
+</many-to-one>
+
+<property name="url" column="url" />
+<property name="description" column="description" />
+
+</class>
+</hibernate-mapping>
